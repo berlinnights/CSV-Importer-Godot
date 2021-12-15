@@ -1,8 +1,21 @@
+extends Node2D
+
+
+var path = "res://TestData.csv"
+
+func _ready():
+	var data = open_Dic_from_txtfile(path)
+	print(data)
+
 # .CSV Data Converter for my Project Manager App
 # returns a dictionary with keys, types and data
-
 func open_Dic_from_txtfile(_path):
 	var f = File.new()
+	if f.file_exists(_path):
+		pass
+	else:
+		print(_path+" - Could not find file.")
+		return
 	var dic = {}
 	f.open(_path, File.READ)
 	var index = 0
@@ -30,10 +43,15 @@ func open_Dic_from_txtfile(_path):
 				for value in data:
 					var t = types[i]
 					var v 
+					print(t)
 					if (t == "int"):
-						v = int(value)
+						v = float(value)
 					elif (t == "str"):
 						v = str(value)
+					elif (t == "list"):
+						v = str(value).replace("#","\n")
+					elif (t == "bool"):
+						v = bool(value)
 					elif (t == "color"):
 						var cA = value.split("#")
 						v = Color(cA[0],cA[1],cA[2],cA[3])
