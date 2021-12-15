@@ -1,0 +1,4 @@
+ID;Name;Nr;Boolean;Color;Lists
+int;str;int;bool;color;list
+0;Blue;1.8;False;0.65098#0.215686#0.215686#1;This#is#a#Test
+1;Green;2.5;True;0.113725#0.113725#0.113725#1;And#another#Test
